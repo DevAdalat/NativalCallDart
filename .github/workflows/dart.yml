@@ -36,6 +36,9 @@ jobs:
         with:
          name: binding
          path: generated_bindings.dart
+
+      - name: Run
+        run: dart bin/nativecall.dart
          
         
      
