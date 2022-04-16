@@ -30,4 +30,12 @@ jobs:
         run: sudo apt-get install libclang-dev
       - name: generate
         run: dart run ffigen
+        
+      - name: Upload to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+         name: binding
+         path: generated_bindings.dart
+         
+        
      
