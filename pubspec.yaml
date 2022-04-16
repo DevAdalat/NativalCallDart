@@ -1,0 +1,26 @@
+name: nativecall
+description: A simple command-line application.
+version: 1.0.0
+# homepage: https://www.example.com
+
+environment:
+  sdk: '>=2.16.2 <3.0.0'
+
+
+# dependencies:
+#   path: ^1.8.0
+
+dev_dependencies:
+  lints: ^1.0.0
+  ffigen: ^4.1.3
+dependencies: 
+  ffi: ^1.1.2
+  
+ffigen:
+  llvm-path:
+    - /data/data/com.termux/files/usr/lib/libclang.so
+    - /data/data/com.termux/files/usr/bin/llvm-*
+  output: 'generated_bindings.dart'
+  headers:
+    entry-points:
+      - 'libmain.h'
