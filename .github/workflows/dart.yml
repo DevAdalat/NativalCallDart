@@ -23,23 +23,16 @@ jobs:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       # - uses: dart-lang/setup-dart@v1
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
-
       - name: Install dependencies
         run: dart pub get
       - name: Download llvm
         run: sudo apt-get install libclang-dev
-        #      - name: Build Go shared library
-        #        run: go build -buildmode=c-shared -o lib.a main.go
-        #      - name: generate
-        #run: dart run ffigen
+      - name: Build Go shared library
+        run: go build -buildmode=c-shared -o lib.a main.go
+      - name: generate
+        run: dart run ffigen
       - name: Upload to Artifacts
         uses: actions/upload-artifact@v2
         with:
          name: binding
          path: generated_bindings.dart
-
-      - name: Run
-        run: dart nativecall.dart
-         
-        
-     

@@ -2,19 +2,19 @@ package main
 
 import "C"
 
-//export HelloWorld
-func HelloWorld() string {
+import (
+	"os"
+)
+
+//export helloWorld
+func helloWorld() string {
 	return "Hello World"
 }
 
-//export Devide
-func Devide(a, b int) int {
-	return a / b
+//export getUid
+func getUid() int{
+	return os.Getuid()
 }
 
-//export Multiply
-func Multiply(a, b int) int {
-	return a * b
-}
 
 func main() {}
