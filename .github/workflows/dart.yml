@@ -28,9 +28,10 @@ jobs:
         run: dart pub get
       - name: Download llvm
         run: sudo apt-get install libclang-dev
+      - name: Build Go shared library
+        run: go build -buildmode=c-shared -o lib.a main.go
       - name: generate
         run: dart run ffigen
-        
       - name: Upload to Artifacts
         uses: actions/upload-artifact@v2
         with:
