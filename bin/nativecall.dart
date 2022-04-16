@@ -1,3 +1,8 @@
+import 'dart:ffi';
+
+import 'generated_bindings.dart';
+
 void main(List<String> arguments) {
-  print('Hello world!');
+	NativeLibrary library = NativeLibrary(DynamicLibrary.open('lib/libmain.so'));
+	print(library.HelloWorld());
 }
