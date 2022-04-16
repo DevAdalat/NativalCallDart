@@ -17,18 +17,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       - name: Install dependencies
         run: dart pub get
       - name: Download llvm
         run: sudo apt-get install libclang-dev
+      - name: Get Gozxing
+        run: go get github.com/makiuchi-d/gozxing
       - name: Build Go shared library
-        run: go build -buildmode=c-shared -o lib.a main.go
+        run: go build -buildmode=c-shared -o libmain.so main.go
       - name: generate
         run: dart run ffigen
       - name: Upload to Artifacts
@@ -36,3 +33,8 @@ jobs:
         with:
          name: binding
          path: generated_bindings.dart
+      - name: Upload to Artifacts shared
+        uses: actions/upload-artifact@v2
+        with:
+         name: shared
+         path: libmain.so
