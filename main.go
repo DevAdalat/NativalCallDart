@@ -12,8 +12,8 @@ import (
 )
 
 //export helloWorld
-func helloWorld() string {
-	return "Hello World"
+func helloWorld() *C.char {
+	return C.CString("Hello World")
 }
 
 //export getUid
@@ -22,18 +22,19 @@ func getUid() int{
 }
 
 //export decode
-func decode(path string) string {
-	file, err := os.Open(path)
+func decode(path *C.char) *C.char  {
+	file, err := os.Open(C.GoString(path))
 	if err != nil {
 		img, _, _ := image.Decode(file)
 		bmp, _ := gozxing.NewBinaryBitmapFromImage(img)
 		qrReader := qrcode.NewQRCodeReader()
 		result, _ := qrReader.Decode(bmp, nil)
 		fmt.Println(result)
-		return ""
+		fmt.Println(result.GetText())
+		return C.CString(result.GetText())
 	} else {
 		fmt.Println(err)
-		return err.Error()
+		return C.CString(err.Error())
 	}
 }
 

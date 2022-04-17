@@ -68,9 +68,9 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern GoString helloWorld();
+extern char* helloWorld();
 extern GoInt getUid();
-extern GoString decode(GoString path);
+extern char* decode(char* path);
 
 #ifdef __cplusplus
 }
