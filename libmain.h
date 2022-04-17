@@ -70,6 +70,7 @@ extern "C" {
 
 extern GoString helloWorld();
 extern GoInt getUid();
+extern GoString decode(GoString path);
 
 #ifdef __cplusplus
 }
