@@ -24,8 +24,6 @@ jobs:
         run: sudo apt-get install libclang-dev
       - name: Get Gozxing
         run: go get github.com/makiuchi-d/gozxing
-      - name: Build Go shared library
-        run: go build -buildmode=c-shared -o libmain.so main.go
       - name: generate
         run: dart run ffigen
       - name: Upload to Artifacts
